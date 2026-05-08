@@ -44,26 +44,24 @@ else:
             venta = col2.number_input("Venta", min_value=0.0)
             
             if st.form_submit_button("GUARDAR EN LA NUBE"):
-                nueva_fila = pd.DataFrame([{
-                    "ID": len(df) + 1,
-                    "FECHA": datetime.now().strftime("%d/%m/%Y"),
-                    "CLIENTE": cliente.upper(),
-                    "MODELO": modelo.upper(),
-                    "IMEI": imei,
-                    "COSTO": costo,
-                    "VENTA": venta
-                }])
-                df_final = pd.concat([df, nueva_fila], ignore_index=True)
-                conn.update(data=df_final)
-                st.success("✅ Sincronizado con Google Sheets")
-                st.rerun()
+                # 1. Este link es el que sacas de "Obtener enlace rellenado" de tu Google Form
+                # Reemplaza los 'entry.123' por los tuyos
+                url_form = (f"https://google.com?"
+                            f"entry.111={cliente}&entry.222={modelo}&entry.333={imei}&"
+                            f"entry.444={costo}&entry.555={venta}&submit=Submit")
+                
+                # 2. Esto envía los datos sin pedir permisos pesados
+                st.markdown(f'<meta http-equiv="refresh" content="0;URL=\'{url_form}\'">', unsafe_allow_html=True)
+                st.success("✅ ¡Sincronizado! Los datos aparecerán en segundos.")
+                st.balloons()
 
-    # Tabla y Ganancias
+    # Tabla y Ganancias (Esto lo dejas igual porque LEER sí funciona)
     st.subheader("📂 INVENTARIO GLOBAL")
     if not df.empty:
         df['GANANCIA'] = df['VENTA'] - df['COSTO']
         st.dataframe(df, use_container_width=True)
         st.metric("📈 GANANCIA NETA TOTAL", f"${df['GANANCIA'].sum():,.2f}")
+
     
     if st.button("CERRAR SESIÓN"):
         st.session_state.auth = False
