@@ -46,7 +46,7 @@ else:
             if st.form_submit_button("GUARDAR EN LA NUBE"):
                 # 1. Este link es el que sacas de "Obtener enlace rellenado" de tu Google Form
                 # Reemplaza los 'entry.123' por los tuyos
-                url_form = (f"https://docs.google.com/forms/d/e/1FAIpQLSeiVqu1rEEsQfOgRek-pruiouXdPLEF6W0nAvYGTFRLZFCywg/viewform?usp=pp_url&entry.1857686369=JAX"
+                url_form = (f"https://docs.google.com/forms/d/e/1FAIpQLSeiVqu1rEEsQfOgRek-pruiouXdPLEF6W0nAvYGTFRLZFCywg/viewform?usp=publish-editor"
                             f"entry.111={cliente}&entry.222={modelo}&entry.333={imei}&"
                             f"entry.444={costo}&entry.555={venta}&submit=Submit")
                 
